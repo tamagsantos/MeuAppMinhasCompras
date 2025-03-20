@@ -18,8 +18,10 @@ namespace MeuAppMinhasCompras.Helpers
         public Task<List<Produto>> Update(Produto p)  
         {
             string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=? WHERE Id=?";
+
             return _conn.QueryAsync<Produto>(
-                sql, p.Descricao, p.Quantidade, p.Preco, p.Id);
+                sql, p.Descricao, p.Quantidade, p.Preco, p.Id
+            );
         }
 
         public Task<int> Delete(int id) 
@@ -31,11 +33,12 @@ namespace MeuAppMinhasCompras.Helpers
             return _conn.Table<Produto>().ToListAsync();
         }
        
+
         public Task<List<Produto>> Seatch(string q)
         {
-            string sql = "SELECT * Produto WHERE Descricao LIKE '%" + q + "%'";
+            string sql = "SELECT * FROM Produto WHERE Descricao LIKE ?";
             
-            return _conn.QueryAsync<Produto>(sql);
+            return _conn.QueryAsync<Produto>(sql, "%" + q + "%");
         }
     }
 }
