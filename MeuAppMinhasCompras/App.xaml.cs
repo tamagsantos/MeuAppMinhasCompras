@@ -1,4 +1,5 @@
 ﻿using MeuAppMinhasCompras.Helpers;
+using System.Globalization;
 
 namespace MeuAppMinhasCompras
 {
@@ -28,6 +29,9 @@ namespace MeuAppMinhasCompras
         public App()
         {
             InitializeComponent();
+            // FAZ ADAPTAÇÃO PARA SIMBOLO VALOR BRASILEIRO
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR"); 
 
          //   MainPage = new AppShell();
                MainPage = new NavigationPage(new Views.ListaProduto()); 
